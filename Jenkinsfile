@@ -1,8 +1,7 @@
 #!groovy
 
 pipeline {
-	agent none
-  stages {
+	agent none  stages {
   	stage('Maven Install') {
     	agent {
       	docker {
@@ -17,6 +16,15 @@ pipeline {
     	agent any
       steps {
       	sh 'docker build -t hackk/helloworld:latest .'
+      }
+    }
+    stage('Docker Push') {
+    	agent any
+      steps {
+      	withCredentials([usernamePassword(credentialsId: 'DockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
+        	sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
+          sh 'docker push shanem/helloworld:latest'
+        }
       }
     }
   }
