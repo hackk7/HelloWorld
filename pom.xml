@@ -15,6 +15,8 @@
     <description>HelloWorld</description>
     <properties>
         <java.version>1.8</java.version>
+        <docker.image.prefix>43.154.87.166:9001/helloworld/hello</docker.image.prefix>
+        <jib-maven-plugin.version>2.2.0</jib-maven-plugin.version>
     </properties>
     <dependencies>
         <dependency>
@@ -34,6 +36,20 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <artifactId>jib-maven-plugin</artifactId>
+                <groupId>com.google.cloud.tools</groupId>
+                <version>${jib-maven-plugin.version}</version>
+                <configuration>
+                    <from>
+                        <image>registry.access.redhat.com/ubi8/openjdk-8-runtime</image>
+                    </from>
+                    <to>
+                        <image>${docker.image.prefix}:${project.version}</image>
+                    </to>
+                    <allowInsecureRegistries>true</allowInsecureRegistries>
+                </configuration>
             </plugin>
         </plugins>
     </build>
