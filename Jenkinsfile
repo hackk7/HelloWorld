@@ -14,10 +14,10 @@ pipeline {
 
 			}
 		}
-	}
+
 
 	stage('jib Image 製作與推送') {
-             steps {
+                 steps {
     				script{
     					withCredentials([usernamePassword(credentialsId: "${harbor_auth}", passwordVariable: 'harborPasswd', usernameVariable: 'haborUser')]) {
     							sh '''
@@ -30,6 +30,6 @@ pipeline {
     						}
     					}
     				}
-    			}
 
+	}
 }
