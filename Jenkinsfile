@@ -1,7 +1,7 @@
 //被抽離的參數
 def git_auth = "github"
 def git_address = "https://github.com/hackk7/HelloWorld.git"
-def harbor_auth = "d4CpdXq3NtUqv5XvHizhhy4g5LpXQGPZ"
+def harbor_auth = "7e88f1ee-6d89-4fea-9e23-5b2209b2f925"
 
 pipeline {
 
