@@ -1,23 +1,16 @@
+//被抽離的參數
+def git_auth = "github"
+def git_address = "https://github.com/hackk7/HelloWorld.git"
+
 pipeline {
 
 	agent any
 
 	stages {
-		stage('Check JavaCode From Gitlab') {
+		stage('Check Java Code From Gitlab') {
 			steps {
-				echo '拉取原始碼'
-			}
-		}
+				checkout([$class: 'GitSCM', branches: [[name: "master"]], extensions: [], userRemoteConfigs: [[credentialsId: "${git_auth}", url: "${git_address}"]]])
 
-		stage('編譯成 Jar 檔') {
-			steps {
-					echo '測試編譯與打包'
-			}
-		}
-
-        stage('打包成 Image') {
-			steps {
-					echo '打包 Image'
 			}
 		}
 	}
