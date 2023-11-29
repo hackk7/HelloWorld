@@ -18,7 +18,6 @@ import java.util.List;
 public class Demo2 {
     public static void main(String[] args) throws Exception {
 
-        List<Long> ids = Arrays.asList(1L, 2L, 3L);
 
     }
 }

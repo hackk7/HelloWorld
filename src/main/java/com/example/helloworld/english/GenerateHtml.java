@@ -16,14 +16,16 @@ public class GenerateHtml {
 
     public static void main(String[] args) throws Exception {
 
-        generate("/Users/mark/Desktop/note/English/mly.md");
+        generate("/Users/mark/Desktop/note/English/GaoZhong_2.md",false);
 
-        outPut("/Users/mark/Desktop/note/English/mly.html");
-        outPut("/Users/mark/Desktop/mly.html");
-
+        outPut("/Users/mark/Desktop/note/English/practice.html");
+        outPut("/Users/mark/Desktop/practice.html");
+        outPut("practice.html");
     }
 
-    private static void generate(String file) throws Exception {
+
+
+    private static void generate(String file, boolean flag) throws Exception {
         List<String> allLines = Files.readAllLines(Paths.get(file));
         // 去掉标题与表格符
         allLines.remove(0);
@@ -36,8 +38,12 @@ public class GenerateHtml {
             if (split.length == 0)
                 continue;
             String substring = split[0];
+            String handler;
             // 转换成html元素
-            String handler = transformHtmlElement(substring, String.valueOf(tabIndex += 1));
+            if (flag)
+                handler = transformHtmlElement(substring, String.valueOf(tabIndex += 1), split.length > 1 ? split[1] : "");
+            else
+                handler = transformHtmlElement(substring, String.valueOf(tabIndex += 1), "");
             // 添加到html元素集合中
             stringBuffer.append(handler);
         }
@@ -51,9 +57,9 @@ public class GenerateHtml {
         fileWriterMethod(outPath, htmlCode);
     }
 
-    private static String transformHtmlElement(String word, String tabIndex) {
+    private static String transformHtmlElement(String word, String tabIndex, String example) {
         String trimWord = word.trim();
-        return String.format(Template.rowTemplate, trimWord, tabIndex, trimWord, trimWord, trimWord);
+        return String.format(Template.getRowTemplateForExample, trimWord, tabIndex, trimWord, trimWord, trimWord, example);
     }
 
     private static String htmlTemp(String content) {
@@ -62,6 +68,7 @@ public class GenerateHtml {
 
     /**
      * 方法 1：使用 FileWriter 写文件
+     *
      * @param filepath 文件目录
      * @param content  待写入内容
      * @throws IOException

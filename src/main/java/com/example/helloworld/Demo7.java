@@ -1,9 +1,20 @@
 package com.example.helloworld;
 
+import org.springframework.format.annotation.DateTimeFormat;
 
-import cn.hutool.core.lang.Snowflake;
-import cn.hutool.core.util.IdUtil;
-import cn.hutool.core.util.RandomUtil;
+import com.example.helloworld.Demo7.Student;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 /**
  * @author 马克
@@ -11,19 +22,46 @@ import cn.hutool.core.util.RandomUtil;
  */
 public class Demo7 {
     public static void main(String[] args) {
-//        for (int i = 0; i < 50; i++) {
-//            System.out.println(IdUtil.objectId());
-//        }
+        Student student1 = new Student("张三", 12);
+        Student student2 = new Student("张三", 11);
+        Student student3 = new Student("李四", 15);
 
-//        Snowflake snowflake = IdUtil.getSnowflake(1, 1);
-//        Snowflake snowflake2 = IdUtil.getSnowflake(1, 1);
-//        for (int i = 0; i < 10; i++) {
-//            System.out.println("1: " + snowflake.nextId());
-//            System.out.println("2: " + snowflake2.nextId());
-//        }
+        List<Student> list = Arrays.asList(student1, student2, student3);
 
-        for (int i = 0; i < 10; i++) {
-            System.out.println(IdUtil.getSnowflakeNextIdStr());
+        Map<String,Long> countMap = list.stream().collect(Collectors.groupingBy(Student::getName, Collectors.counting()));
+
+        System.out.println(countMap);
+
+
+
+
+    }
+
+
+    @Data
+    @AllArgsConstructor
+    public static class Student{
+        private String name;
+        private int age;
+
+        @Override
+        public boolean equals(Object obj) {
+            if (this == obj) {
+                return true;
+            }
+            if (obj == null) {
+                return false;
+            }
+            if (getClass() != obj.getClass()) {
+                return false;
+            }
+            Student other = (Student) obj;
+            return Objects.equals(name, other.name);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(name);
         }
     }
 }
