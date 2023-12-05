@@ -16,7 +16,7 @@ public class GenerateHtml {
 
     public static void main(String[] args) throws Exception {
 
-        generate("/Users/mark/Desktop/note/English/GaoZhong_1.md",true);
+        generate("/Users/mark/Desktop/note/English/GaoZhong_2.md",true);
 
         outPut("/Users/mark/Desktop/note/English/practice.html");
         outPut("/Users/mark/Desktop/practice.html");
