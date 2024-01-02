@@ -14,14 +14,10 @@ import lombok.Data;
  */
 public class Demo6 {
     public static void main(String[] args) throws Exception {
-        Student student = JSON.parseObject("{ \"name\":\"mark\" }", Student.class);
-        System.out.println(student.getName());
-        System.out.println(student);
-    }
+        String str = "hand        |";
+        String[] split = str.split("\\|");
+        System.out.println(split.length);
 
-    @Data
-    public static class Student {
-        private String name;
-        private List<String> toys;
+
     }
 }

@@ -19,7 +19,6 @@ import java.util.function.Predicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
 /**
  * @author 马克
  * @since 2023/11/30
@@ -27,34 +26,37 @@ import java.util.regex.Pattern;
 @Slf4j
 public class AutoDown2 {
     private static final String ROOT_DIR = "/Users/mark/Documents/妈妈下载/";
+    private static final String DOWNLOAD_URL = "http://api.yageapp.com/api/web/share/postor.php?aid=6559&sid=199819&bundleid=&base_uid=-1";
     private static final Map<String, String> NUMBER_FILENAME_TO_URL = new HashMap<>();
     private static final Map<String, String> CHINESE_FILENAME_TO_URL = new HashMap<>();
 
-
     public static void main(String[] args) throws Exception {
-        // 请求url
-        String url = "http://api.yageapp.com/api/web/share/postor.php?aid=37759&sid=1621455&bundleid=&base_uid=1480873";
-        Document document = Jsoup.connect(url).get();
-        String title = document.title();
+        List<String> urlStrings = Arrays.asList("http://api.yageapp.com/api/web/share/postor.php?aid=37074&sid=1670520&bundleid=&base_uid=1531139");
 
-        // 取中文文件名
-        List<String> chineseFilename = new ArrayList<>();
-        Elements elements = document.getElementsByClass("qui_list__txt");
-        elements.forEach(e -> chineseFilename.add(e.text()));
+        for (String url : urlStrings) {
+            Document document = Jsoup.connect(url).get();
+            String title = document.title();
+            // 取中文文件名
+            List<String> chineseFilename = new ArrayList<>();
+            Elements elements = document.getElementsByClass("qui_list__txt");
+            elements.forEach(e -> chineseFilename.add(e.text()));
 
-        // 获取数字文件名
-        List<String> numName = getNumName(document);
-        // 获取 fileNameToUrl
-        getNameToUrl(document, numName);
-        // 处理下载信息 chineseFilename to url
-        transformNumberNameToChineseName(chineseFilename, numName);
-        // 将要下载的文件
-        List<File> targetFiles = shallCreateFile(title);
-        // 下载文件
-        targetFiles.forEach( e -> downloadFile(e, CHINESE_FILENAME_TO_URL));
-
+            // 获取数字文件名
+            List<String> numName = getNumName(document);
+            // 获取 fileNameToUrl
+            getNameToUrl(document, numName);
+            // 处理下载信息 chineseFilename to url
+            transformNumberNameToChineseName(chineseFilename, numName);
+            // 将要下载的文件
+            List<File> targetFiles = shallCreateFile(title);
+            // 下载文件
+            targetFiles.forEach(e -> downloadFile(e, CHINESE_FILENAME_TO_URL));
+            // 清理记录
+            NUMBER_FILENAME_TO_URL.clear();
+            CHINESE_FILENAME_TO_URL.clear();
+            Thread.sleep(1000);
+        }
     }
-
 
     @SneakyThrows
     public static void downloadFile(File file, Map<String, String> filenameToUrl) {
@@ -87,7 +89,7 @@ public class AutoDown2 {
         }
     }
 
-    public static List<String> getNumName (Document document) {
+    public static List<String> getNumName(Document document) {
         // 读取js
         Element script = document.select("script").get(7);
         // 获取文件名
@@ -114,5 +116,7 @@ public class AutoDown2 {
         return null;
     }
 
-    static <T> Predicate<T> not(Predicate<T> p) { return o -> !p.test(o); }
+    static <T> Predicate<T> not(Predicate<T> p) {
+        return o -> !p.test(o);
+    }
 }

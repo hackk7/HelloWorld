@@ -1,32 +1,35 @@
 package com.example.helloworld.english;
 
+import lombok.extern.slf4j.Slf4j;
+
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.List;
 
 /**
  * @author 马克
  * @date 2023/11/1
  */
+@Slf4j
 public class GenerateHtml {
 
     static String htmlCode = "";
 
     public static void main(String[] args) throws Exception {
 
-        generate("/Users/mark/Desktop/note/English/GaoZhong_2.md",true);
-
-        outPut("/Users/mark/Desktop/note/English/practice.html");
-        outPut("/Users/mark/Desktop/practice.html");
-        outPut("practice.html");
+        for (String strFile : Commont.files) {
+            File file = new File(strFile);
+            generate(file, true);
+            String outFile = file.getParent() + "/html/" + file.getName() + ".html";
+            output(outFile);
+            log.info("done.");
+        }
     }
 
-
-
-    private static void generate(String file, boolean flag) throws Exception {
-        List<String> allLines = Files.readAllLines(Paths.get(file));
+    private static void generate(File file, boolean flag) throws Exception {
+        List<String> allLines = Files.readAllLines(file.toPath());
         // 去掉标题与表格符
         allLines.remove(0);
         allLines.remove(0);
@@ -41,7 +44,8 @@ public class GenerateHtml {
             String handler;
             // 转换成html元素
             if (flag)
-                handler = transformHtmlElement(substring, String.valueOf(tabIndex += 1), split.length > 1 ? split[1] : "");
+                handler = transformHtmlElement(substring, String.valueOf(tabIndex += 1),
+                        split.length > 1 ? split[1] : "");
             else
                 handler = transformHtmlElement(substring, String.valueOf(tabIndex += 1), "");
             // 添加到html元素集合中
@@ -52,14 +56,15 @@ public class GenerateHtml {
 
     }
 
-    private static void outPut(String outPath) throws Exception {
+    private static void output(String outPath) throws Exception {
         // 输出到文件
         fileWriterMethod(outPath, htmlCode);
     }
 
     private static String transformHtmlElement(String word, String tabIndex, String example) {
         String trimWord = word.trim();
-        return String.format(Template.getRowTemplateForExample, trimWord, tabIndex, trimWord, trimWord, trimWord, example);
+        return String.format(Template.getRowTemplateForExample, trimWord, tabIndex, trimWord, trimWord, trimWord,
+                trimWord, example);
     }
 
     private static String htmlTemp(String content) {

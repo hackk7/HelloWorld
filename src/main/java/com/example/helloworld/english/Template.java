@@ -19,7 +19,8 @@ public interface Template {
             "    <style>\n" +
             "        body {\n" +
             "            background-color: #2B2B2B;\n" +
-            "            font-size: 24px;\n" +
+            "            font-size: 20px;\n" +
+        //     "            font-family: monospace;\n" +
             "        }\n" +
             "    </style>\n" +
             "</head>\n" +
@@ -37,5 +38,6 @@ public interface Template {
     String getRowTemplateForExample = "<p style=\"color: #a9b7c6\">&nbsp&nbsp&nbsp&nbsp %s &nbsp&nbsp&nbsp&nbsp" +
             "<input type=\"button\" tabindex = \"%s\" value=\"UK\" onclick=\"playAudio('https://dict.youdao.com/dictvoice?audio=%s&type=1')\">" +
             "<input type=\"button\" value=\"US\" onclick=\"playAudio('https://dict.youdao.com/dictvoice?audio=%s&type=2')\">" +
-            "<input type=\"button\" value=\"image\" onclick='window.open(\"https://cn.bing.com/images/search?q=%s&first=1\")'/>  %s </p>\n";
+            "<input type=\"button\" value=\"image\" onclick='window.open(\"https://cn.bing.com/images/search?q=%s&first=1\")'/>" +
+            "<input type=\"button\" value=\"merriam\" onclick='window.open(\"https://www.merriam-webster.com/dictionary/%s\")'/>  %s </p>\n";
 }

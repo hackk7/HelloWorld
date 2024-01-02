@@ -16,7 +16,7 @@ public class GenerateHtmlMly {
 
     public static void main(String[] args) throws Exception {
 
-        generate("/Users/mark/Desktop/note/English/MLY.md");
+        generate("/Users/mark/Desktop/note/English/MLY-2.md");
 
         outPut("/Users/mark/Desktop/note/English/mly.html");
         outPut("/Users/mark/Desktop/mly.html");
