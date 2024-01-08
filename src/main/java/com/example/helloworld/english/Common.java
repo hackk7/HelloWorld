@@ -3,7 +3,7 @@ package com.example.helloworld.english;
 import java.util.Arrays;
 import java.util.List;
 
-public interface Commont {
+public interface Common {
     List<String> files = Arrays.asList(
             "/Users/mark/Desktop/note/English/1200-1.md",
             "/Users/mark/Desktop/note/English/1200-2.md",

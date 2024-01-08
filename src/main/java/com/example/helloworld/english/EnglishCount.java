@@ -13,7 +13,7 @@ public class EnglishCount {
 
         Map<String, String> result = new LinkedHashMap<>();
 
-        for (String file : Commont.files) {
+        for (String file : Common.files) {
             List<String> allLines = Files.readAllLines(Paths.get(file));
             allLines.remove(0);
             allLines.remove(0);

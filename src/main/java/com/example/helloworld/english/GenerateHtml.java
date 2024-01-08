@@ -14,12 +14,9 @@ import java.util.List;
  */
 @Slf4j
 public class GenerateHtml {
-
     static String htmlCode = "";
-
     public static void main(String[] args) throws Exception {
-
-        for (String strFile : Commont.files) {
+        for (String strFile : Common.files) {
             File file = new File(strFile);
             generate(file, true);
             String outFile = file.getParent() + "/html/" + file.getName() + ".html";
@@ -53,12 +50,12 @@ public class GenerateHtml {
         }
         // 转换成html文档
         htmlCode = htmlTemp(stringBuffer.toString());
-
     }
 
     private static void output(String outPath) throws Exception {
         // 输出到文件
         fileWriterMethod(outPath, htmlCode);
+        htmlCode = "";
     }
 
     private static String transformHtmlElement(String word, String tabIndex, String example) {
