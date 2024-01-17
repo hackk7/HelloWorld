@@ -25,13 +25,13 @@ import java.util.regex.Pattern;
  */
 @Slf4j
 public class AutoDown2 {
-    private static final String ROOT_DIR = "/Users/mark/Documents/妈妈下载/";
+    private static final String ROOT_DIR = "/Users/mark/Downloads/妈妈下载/";
     private static final String DOWNLOAD_URL = "http://api.yageapp.com/api/web/share/postor.php?aid=6559&sid=199819&bundleid=&base_uid=-1";
     private static final Map<String, String> NUMBER_FILENAME_TO_URL = new HashMap<>();
     private static final Map<String, String> CHINESE_FILENAME_TO_URL = new HashMap<>();
 
     public static void main(String[] args) throws Exception {
-        List<String> urlStrings = Arrays.asList("http://api.yageapp.com/api/web/share/postor.php?aid=7180&sid=&bundleid=&base_uid=1480873");
+        List<String> urlStrings = Arrays.asList("http://api.yageapp.com/api/web/share/postor.php?aid=39179&sid=1691492&bundleid=&base_uid=1480873");
 
         for (String url : urlStrings) {
             Document document = Jsoup.connect(url).get();

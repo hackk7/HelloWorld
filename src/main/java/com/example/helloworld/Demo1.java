@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
  * @author 马克
  * @date 2023/4/14
  */
-public class Demo {
+public class Demo1 {
 
 
     public static void main(String[] args) {

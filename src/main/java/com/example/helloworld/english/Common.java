@@ -53,5 +53,8 @@ public interface Common {
             "/Users/mark/Desktop/note/English/GaoZhong_21.md",
             "/Users/mark/Desktop/note/English/GaoZhong_22.md",
             "/Users/mark/Desktop/note/English/GaoZhong_23.md",
-            "/Users/mark/Desktop/note/English/GaoZhong_24.md");
+            "/Users/mark/Desktop/note/English/GaoZhong_24.md",
+            "/Users/mark/Desktop/note/English/CurrentFocus.md",
+            "/Users/mark/Desktop/note/English/GaoZhong_not_understand.md"
+            );
 }

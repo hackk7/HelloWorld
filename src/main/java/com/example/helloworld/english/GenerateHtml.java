@@ -16,7 +16,7 @@ import java.util.List;
 public class GenerateHtml {
     static String htmlCode = "";
     public static void main(String[] args) throws Exception {
-        for (String strFile : Common.files) {
+        for (String strFile : Common.files){
             File file = new File(strFile);
             generate(file, true);
             String outFile = file.getParent() + "/html/" + file.getName() + ".html";
@@ -41,8 +41,7 @@ public class GenerateHtml {
             String handler;
             // 转换成html元素
             if (flag)
-                handler = transformHtmlElement(substring, String.valueOf(tabIndex += 1),
-                        split.length > 1 ? split[1] : "");
+                handler = transformHtmlElement(substring, String.valueOf(tabIndex += 1), split.length > 1 ? split[1] : "");
             else
                 handler = transformHtmlElement(substring, String.valueOf(tabIndex += 1), "");
             // 添加到html元素集合中
@@ -60,8 +59,7 @@ public class GenerateHtml {
 
     private static String transformHtmlElement(String word, String tabIndex, String example) {
         String trimWord = word.trim();
-        return String.format(Template.getRowTemplateForExample, trimWord, tabIndex, trimWord, trimWord, trimWord,
-                trimWord, example);
+        return String.format(Template.getRowTemplateForExample, trimWord, tabIndex, trimWord, trimWord, trimWord, trimWord, example);
     }
 
     private static String htmlTemp(String content) {
