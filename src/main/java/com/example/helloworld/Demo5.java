@@ -1,5 +1,10 @@
 package com.example.helloworld;
 
+import org.apache.commons.lang3.StringUtils;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -8,9 +13,10 @@ import java.util.Optional;
  */
 public class Demo5 {
     public static void main(String[] args) {
-        Long a = 2L;
 
-        System.out.println(2 == a);
-
+        String str = null;
+        if (StringUtils.isNotBlank(str) && str.length() > 50) {
+            System.out.println("Hello");
+        }
     }
 }

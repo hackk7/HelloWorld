@@ -31,7 +31,7 @@ public class AutoDown2 {
     private static final Map<String, String> CHINESE_FILENAME_TO_URL = new HashMap<>();
 
     public static void main(String[] args) throws Exception {
-        List<String> urlStrings = Arrays.asList("http://api.yageapp.com/api/web/share/postor.php?aid=39179&sid=1691492&bundleid=&base_uid=1480873");
+        List<String> urlStrings = Arrays.asList("http://api.yageapp.com/api/web/share/postor.php?aid=7175&sid=220150&bundleid=&base_uid=1479461&source=");
 
         for (String url : urlStrings) {
             Document document = Jsoup.connect(url).get();

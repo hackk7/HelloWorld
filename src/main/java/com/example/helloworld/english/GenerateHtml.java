@@ -18,6 +18,8 @@ public class GenerateHtml {
     public static void main(String[] args) throws Exception {
         for (String strFile : Common.files){
             File file = new File(strFile);
+            if (!file.exists())
+                continue;
             generate(file, true);
             String outFile = file.getParent() + "/html/" + file.getName() + ".html";
             output(outFile);
