@@ -30,8 +30,8 @@ public class GenerateHtml {
     private static void generate(File file, boolean flag) throws Exception {
         List<String> allLines = Files.readAllLines(file.toPath());
         // 去掉标题与表格符
-        allLines.remove(0);
-        allLines.remove(0);
+         allLines.remove(0);
+         allLines.remove(0);
         StringBuffer stringBuffer = new StringBuffer();
         int tabIndex = 0;
         for (String line : allLines) {
